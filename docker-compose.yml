@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  account-service:
+    build:
+      context: ./services/account
+      dockerfile: Dockerfile
+    container_name: account-service
+    command: uvicorn app.main:app --reload --port 8000 --host 0.0.0.0
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/account
+    ports:
+      - "8001:8000"
+
+  payment-service:
+    build:
+      context: ./services/payment
+      dockerfile: Dockerfile
+    container_name: payment-service
+    command: uvicorn app.main:app --reload --port 8000 --host 0.0.0.0
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/payment
+    ports:
+      - "8002:8000"
+
+  db:
+    image: postgres:16
+    container_name: db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
