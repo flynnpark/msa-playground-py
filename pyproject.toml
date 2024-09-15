@@ -10,6 +10,45 @@ package-mode = false
 python = "^3.12"
 
 
+[tool.poetry.group.dev.dependencies]
+black = "^24.8.0"
+ruff = "^0.6.5"
+pre-commit = "^3.8.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+include = '\.pyi?$'
+target-version = ['py312']
+line-length = 120
+
+[tool.ruff]
+line-length = 120
+indent-width = 4
+target-version = 'py312'
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "C",  # flake8-comprehensions
+    "B",  # flake8-bugbear
+    "UP", # pyupgrade
+    "PL", # pylint
+]
+ignore = [
+    "E501",    # line too long, handled by black
+    "E711",    # Comparison to None should be cond is None
+    "E712",    # Comparison to True should be cond is True or if cond:
+    "B008",    # do not perform function calls in argument defaults
+    "C901",    # too complex
+    "PLR0913", # too many arguments to function call
+]
+
+[tool.ruff.format]
+indent-style = "space"
+line-ending = "auto"
