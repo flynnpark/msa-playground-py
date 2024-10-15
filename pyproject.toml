@@ -11,9 +11,9 @@ python = "^3.12"
 
 
 [tool.poetry.group.dev.dependencies]
-black = "^24.8.0"
-ruff = "^0.6.5"
-pre-commit = "^3.8.0"
+black = "^24.10.0"
+ruff = "^0.6.9"
+pre-commit = "^4.0.1"
 
 [build-system]
 requires = ["poetry-core"]
