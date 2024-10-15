@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"name": "msa-playground-py",
+			"path": "."
+		},
+		{
+			"name": "account",
+			"path": "services/account"
+		},
+		{
+			"name": "payment",
+			"path": "services/payment"
+		}
+	]
+}
